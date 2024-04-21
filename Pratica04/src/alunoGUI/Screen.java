@@ -45,15 +45,33 @@ public class Screen  extends JFrame {
 
     //Atualizar
     //Label
-    private JLabel label_consulta1 = new JLabel("Insira o cpf do aluno: ");
-    private JLabel getLabel_consulta2 = new JLabel("Digite o componente a ser atulizado (Digitar tudo em letra minúscula) : ");
+    private JLabel label_atualizar1 = new JLabel("Insira o cpf do aluno: ");
+    private JLabel label_atualizar2 = new JLabel("<html><p>Digite o componente a ser atulizado</p> <p>(Digitar tudo em letra minúscula) :</p></html> ");
+    private JLabel mistery_label = new JLabel("BOA");
 
     //Campos de texto
     private JTextField inserir_cpf_atualizar = new JTextField();
+    private JTextField mistery_JTextField = new JTextField();
     private JTextField inserir_atualizar = new JTextField();
 
     //Botões
-    //private
+     private JButton mistery_button = new JButton("OK");
+     private JButton botao_atualizar = new JButton("Atualizar");
+
+
+
+    //Consultar
+
+    //Labels
+    private JLabel label_consulta = new JLabel("Insira o cpf do aluno a ser consultado :");
+    private JLabel receiver_label = new JLabel();
+
+    //Campos de Texto
+    private JTextField inserir_consulta = new JTextField();
+
+    //Botões
+    private JButton botao_consultar = new JButton("Consultar");
+
 
 
 
@@ -121,7 +139,7 @@ public class Screen  extends JFrame {
 
 
         //Botão
-        botao_cadastrar.setBounds(200,350,100,20);
+        botao_cadastrar.setBounds(200,300,100,20);
         add(botao_cadastrar);
         botao_cadastrar.addActionListener(this::cadastrar);
 
@@ -138,6 +156,70 @@ public class Screen  extends JFrame {
         //Botão Excluir
         botao_excluir.setBounds(850,220,100,20);
         add(botao_excluir);
+
+
+        //Atualizar
+
+        //JTextFields + Labels
+        label_atualizar1.setBounds(20,430,200,20);
+        add(label_atualizar1);
+
+        label_atualizar2.setBounds(20,470,230,80);
+        add(label_atualizar2);
+
+        mistery_label.setBounds(20,570,70,20);
+        add(mistery_label);
+
+        inserir_cpf_atualizar.setBounds(150,432,200,20);
+        inserir_cpf_atualizar.setBorder(new LineBorder(Color.black));
+        add(inserir_cpf_atualizar);
+
+        mistery_JTextField.setBounds(220,512,200,20);
+        mistery_JTextField.setBorder(new LineBorder(Color.black));
+        add(mistery_JTextField);
+
+        inserir_atualizar.setBounds(70,572,200,20);
+        inserir_atualizar.setBorder(new LineBorder(Color.black));
+        add(inserir_atualizar);
+
+        //Buttons
+        mistery_button.setBounds(430,512,70,20);
+        mistery_button.setBorder(new LineBorder(Color.black));
+        add(mistery_button);
+
+        botao_atualizar.setBounds(290,572,120,20);
+        botao_atualizar.setBorder(new LineBorder(Color.black));
+        add(botao_atualizar);
+
+
+        //Consultar
+
+        //JTextFields + Labels
+        label_consulta.setBounds(700,400,220,20);
+        add(label_consulta);
+
+        receiver_label.setBounds(750,450,400,250);
+        receiver_label.setBorder(new LineBorder(Color.black));
+        add(receiver_label);
+
+        inserir_consulta.setBounds(930,402,200,20);
+        inserir_consulta.setBorder(new LineBorder(Color.black));
+        add(inserir_consulta);
+
+
+        //Botões
+        botao_consultar.setBounds(1150,402,70,20);
+        botao_consultar.setBorder(new LineBorder(Color.black));
+        add(botao_consultar);
+
+
+
+
+
+
+
+
+
 
 
 
