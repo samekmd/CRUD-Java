@@ -52,4 +52,19 @@ public void adiciona(Aluno aluno){
     }
 
 
+    public void excluir(String cpf){
+
+
+    }
+
+
+    public void atualizar(){
+
+    }
+
+    public void consultar(String cpf){
+
+    }
+
+
 }
