@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Screen  extends JFrame {
 
@@ -43,15 +44,7 @@ public class Screen  extends JFrame {
     //Botão
     private JButton botao_excluir = new JButton("OK");
 
-    private void excluir(ActionEvent actionEvent) {
-        AlunoDAO dao = new AlunoDAO();
-        if (dao.cpfExistente(inserir_excluir.getText())){
-            dao.excluir(inserir_excluir.getText());
-            mensagens.showMessageDialog(null, "CPF excluido com sucesso");
-        }else {
-            mensagens.showMessageDialog(null,"O CPF digitado nao existe");
-        }
-    }
+
 
 
     //Atualizar
@@ -166,6 +159,7 @@ public class Screen  extends JFrame {
 
         //Botão Excluir
         botao_excluir.setBounds(850,220,100,20);
+        botao_excluir.addActionListener(this::excluir);
         add(botao_excluir);
 
 
@@ -179,6 +173,7 @@ public class Screen  extends JFrame {
         add(label_atualizar2);
 
         mistery_label.setBounds(20,570,70,20);
+        mistery_label.setVisible(false);
         add(mistery_label);
 
         inserir_cpf_atualizar.setBounds(150,432,200,20);
@@ -191,15 +186,18 @@ public class Screen  extends JFrame {
 
         inserir_atualizar.setBounds(70,572,200,20);
         inserir_atualizar.setBorder(new LineBorder(Color.black));
+        inserir_atualizar.setVisible(false);
         add(inserir_atualizar);
 
         //Buttons
         mistery_button.setBounds(430,512,70,20);
         mistery_button.setBorder(new LineBorder(Color.black));
+        mistery_button.addActionListener(this::aparecer);
         add(mistery_button);
 
         botao_atualizar.setBounds(290,572,120,20);
         botao_atualizar.setBorder(new LineBorder(Color.black));
+        botao_atualizar.setVisible(false);
         botao_atualizar.addActionListener(this::atualizar);
         add(botao_atualizar);
 
@@ -222,39 +220,39 @@ public class Screen  extends JFrame {
         //Botões
         botao_consultar.setBounds(1150,402,70,20);
         botao_consultar.setBorder(new LineBorder(Color.black));
+        botao_consultar.addActionListener(this::consultar);
         add(botao_consultar);
 
+    }
 
+    private void aparecer(ActionEvent actionEvent) {
+        botao_atualizar.setVisible(true);
+        mistery_label.setText(mistery_JTextField.getText());
+        mistery_label.setVisible(true);
+        inserir_atualizar.setVisible(true);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private void consultar(ActionEvent actionEvent) {
+        AlunoDAO dao = new AlunoDAO();
+        List<String> consulta_resultado = dao.consultar(inserir_consulta.getText());
+        StringBuilder sb = new StringBuilder();
+        for(String consulta : consulta_resultado){
+           sb.append(consulta).append(    " ");
+        }
+        String resultado_DB =sb.toString();
+        receiver_label.setText(resultado_DB);
     }
 
     private void atualizar(ActionEvent actionEvent)  {
         AlunoDAO dao = new AlunoDAO();
         if(dao.cpfExistente(inserir_cpf_atualizar.getText())) {
-           if (mistery_JTextField.getText().equals("nome")){
-               dao.setIndice_sql(2);
-               dao.atualizar_String(inserir_cpf_atualizar.getText(),mistery_JTextField.getText());
-               mensagens.showMessageDialog(null,"Certo");
+
+               dao.setColuna_sql(mistery_JTextField.getText());
+               dao.atualizar_String(inserir_cpf_atualizar.getText(),inserir_atualizar.getText());
 
 
-           }else{
-               mensagens.showMessageDialog(null,"Errado");
-           }
+
+
         }
 
 
@@ -290,6 +288,18 @@ public class Screen  extends JFrame {
             }
         }
     }
+
+
+    //Ação do botão Excluir
+    private void excluir(ActionEvent actionEvent) {
+        AlunoDAO dao = new AlunoDAO();
+        if (dao.cpfExistente(inserir_excluir.getText())){
+            dao.excluir(inserir_excluir.getText());
+        }
+    }
+
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Screen());
