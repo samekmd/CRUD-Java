@@ -43,6 +43,16 @@ public class Screen  extends JFrame {
     //Botão
     private JButton botao_excluir = new JButton("OK");
 
+    private void excluir(ActionEvent actionEvent) {
+        AlunoDAO dao = new AlunoDAO();
+        if (dao.cpfExistente(inserir_excluir.getText())){
+            dao.excluir(inserir_excluir.getText());
+            mensagens.showMessageDialog(null, "CPF excluido com sucesso");
+        }else {
+            mensagens.showMessageDialog(null,"O CPF digitado nao existe");
+        }
+    }
+
 
     //Atualizar
     //Label
