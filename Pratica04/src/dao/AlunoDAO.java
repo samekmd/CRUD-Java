@@ -53,8 +53,24 @@ public void adiciona(Aluno aluno){
 
 
     public void excluir(String cpf){
+        int cpfExcluir =  1;                                                 //dados a serem excluidos
+        try {
+            String sql = "DELETE FROM registro WHERE id = " + cpfExcluir;    //consulta de exclusão
+            Statement statement = connection.createStatement();              //instrução sql
+            int linhasAfetadas = statement.executeUpdate(sql);               //executando a exclusao
+            if (linhasAfetadas > 0) {
+                System.out.println("Dados excluidos com sucesso");
+            }else {
+                System.out.println("Nenhum dado foi excluido");
+            }
+            //fechando recursos
+            statement.close();
+            connection.close();
 
-
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
