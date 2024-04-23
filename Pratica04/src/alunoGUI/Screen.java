@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class Screen  extends JFrame {
 
@@ -189,6 +190,7 @@ public class Screen  extends JFrame {
 
         botao_atualizar.setBounds(290,572,120,20);
         botao_atualizar.setBorder(new LineBorder(Color.black));
+        botao_atualizar.addActionListener(this::atualizar);
         add(botao_atualizar);
 
 
@@ -231,6 +233,23 @@ public class Screen  extends JFrame {
 
     }
 
+    private void atualizar(ActionEvent actionEvent)  {
+        AlunoDAO dao = new AlunoDAO();
+        if(dao.cpfExistente(inserir_cpf_atualizar.getText())) {
+           if (mistery_JTextField.getText().equals("nome")){
+               dao.setIndice_sql(2);
+               dao.atualizar_String(inserir_cpf_atualizar.getText(),mistery_JTextField.getText());
+               mensagens.showMessageDialog(null,"Certo");
+
+
+           }else{
+               mensagens.showMessageDialog(null,"Errado");
+           }
+        }
+
+
+}
+
     //Ação do botão cadastrar
     private void cadastrar(ActionEvent actionEvent) {
         //Atribuição de dados
@@ -266,3 +285,5 @@ public class Screen  extends JFrame {
         SwingUtilities.invokeLater(() -> new Screen());
     }
 }
+
+

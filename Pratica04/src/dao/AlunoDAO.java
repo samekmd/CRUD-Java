@@ -3,16 +3,25 @@ package dao;
 import connection.ConnectionDB;
 import modelo.Aluno;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.*;
+import java.sql.*;
 
 public class AlunoDAO {
 
     private Connection connection;
+    private int indice_sql;
 
-public AlunoDAO(){
+    JOptionPane mensagem = new JOptionPane();
+
+    public int getIndice_sql() {
+        return indice_sql;
+    }
+
+    public void setIndice_sql(int indice_sql) {
+        this.indice_sql = indice_sql;
+    }
+
+    public AlunoDAO(){
     this.connection = new ConnectionDB().getConnection();
 }
 
@@ -58,9 +67,48 @@ public void adiciona(Aluno aluno){
     }
 
 
-    public void atualizar(){
+    public void atualizar_String(String cpf,  String parametro_sql)  {
+
+
+
+       String sql = "UPDATE registro SET " + parametro_sql + "=?" + "WHERE cpf=" + cpf ;
+
+       try{
+           PreparedStatement stmt = connection.prepareStatement(sql);
+           stmt.setString(getIndice_sql(),parametro_sql);
+           stmt.execute();
+           stmt.close();
+           int linhas_afetadas = stmt.executeUpdate();
+           if (linhas_afetadas > 0){
+               mensagem.showMessageDialog(null,"Registro atualizado com sucesso");
+           }else{
+                mensagem.showMessageDialog(null,"Nenhum registro foi feito");
+           }
+
+
+       }catch(SQLException e){
+
+           mensagem.showMessageDialog(null,"Erro ao atualizar");
+
+
+
+        }
+
+
+
+
+
+
+
 
     }
+
+    public void atualizar_Int(String cpf, int mistery){
+
+
+    }
+
+
 
     public void consultar(String cpf){
 
