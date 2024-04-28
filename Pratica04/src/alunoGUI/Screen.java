@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.List;
 
+//Dupla Samuel Machado e Matheus Santos
+
 public class Screen  extends JFrame {
 
     //Cadastrar
@@ -172,7 +174,7 @@ public class Screen  extends JFrame {
         label_atualizar2.setBounds(20,470,230,80);
         add(label_atualizar2);
 
-        mistery_label.setBounds(20,570,70,20);
+        mistery_label.setBounds(20,570,150,20);
         mistery_label.setVisible(false);
         add(mistery_label);
 
@@ -209,7 +211,7 @@ public class Screen  extends JFrame {
         add(label_consulta);
 
         receiver_label.setBounds(750,450,400,250);
-        receiver_label.setBorder(new LineBorder(Color.black));
+        //receiver_label.setBorder(new LineBorder(Color.black));
         add(receiver_label);
 
         inserir_consulta.setBounds(930,402,200,20);
@@ -230,6 +232,10 @@ public class Screen  extends JFrame {
         mistery_label.setText(mistery_JTextField.getText());
         mistery_label.setVisible(true);
         inserir_atualizar.setVisible(true);
+        if (mistery_JTextField.getText().equals("data de nascimento")){
+            inserir_atualizar.setBounds(140,572,200,20);
+            botao_atualizar.setBounds(350,572,120,20);
+        }
     }
 
     private void consultar(ActionEvent actionEvent) {
@@ -245,6 +251,7 @@ public class Screen  extends JFrame {
 
     private void atualizar(ActionEvent actionEvent)  {
         AlunoDAO dao = new AlunoDAO();
+
         if(dao.cpfExistente(inserir_cpf_atualizar.getText())) {
 
                dao.setColuna_sql(mistery_JTextField.getText());

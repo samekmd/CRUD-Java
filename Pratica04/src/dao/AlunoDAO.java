@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+//Dupla Samuel Machado e Matheus Santos
 
 public class AlunoDAO {
 

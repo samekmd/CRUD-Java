@@ -1,5 +1,5 @@
 package modelo;
-
+//Dupla Samuel Machado e Matheus Santos 
 public class Aluno {
 
     private String cpf;

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//Dupla Samuel Machado e Matheus Santos
+
 public class ConnectionDB {
     public Connection getConnection(){
         /*try{
